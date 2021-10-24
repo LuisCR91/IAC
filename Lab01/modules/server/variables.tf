@@ -25,12 +25,16 @@ variable "linux-user"{
 }
 
 output "ip-publica" {
-    value = azurerm_public_ip.publicip.ip_address
+    value = azurerm_public_ip.publicip.*.ip_address
   
 }
 
 variable "cantidad-servers" {
     type = number
+    validation {
+      condition = var.cantidad-servers <=2
+      error_message = "No se pueden crear más de 2 servidores"
+    }
     
   
 }
