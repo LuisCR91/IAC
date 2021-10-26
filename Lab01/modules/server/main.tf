@@ -1,5 +1,5 @@
 locals {
-  prefix = "iac"
+  prefix = "iac${terraform.workspace == "default" ? "dev1" : terraform.workspace}"
 }
 
 resource "azurem_resource_group" "grupito"{
